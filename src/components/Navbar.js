@@ -1,21 +1,20 @@
 import { Component } from "react";
 import { Nav, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class NavBar extends Component {
   render() {
     return (
       <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href="#home">Evento</Navbar.Brand>
+          <Link to="/">Evento</Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
+          <Navbar.Collapse id="responsive-navbar-nav ">
             <Nav className="ms-auto">
-              <Nav.Link href="#About me">About me</Nav.Link>
-              <Nav.Link href="#Portofolio">Portofolio</Nav.Link>
-              <Nav.Link href="#Contacts">Contacts</Nav.Link>
-              <Nav.Link eventKey={2} href="#Resume">
-                Resume
-              </Nav.Link>
+              <Link to="/about">About me</Link>
+              <Link to="/pricing">Portofolio</Link>
+              <Link to="/contact">Contacts</Link>
+<Link to ="/register">Register</Link>             
             </Nav>
           </Navbar.Collapse>
         </Navbar>

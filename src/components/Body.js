@@ -4,6 +4,8 @@ import Homepage from "../pages/Homepage";
 import About from "./About";
 import Contact from "./Contact";
 import Menubar from './Menubar';
+import Pricing from "./Pricing";
+import Register from "./register";
 
 function Body() {
   return (
@@ -13,7 +15,9 @@ function Body() {
       <Route path="/" element={<Homepage />} />
 
       <Route path="/about" element={<About />} />
-      <Route hrefto="/contact" element={<Contact />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/pricing" element={<Pricing />} />
+      <Route path="/register" element={<Register />} />
     </Routes>
   );
 }
