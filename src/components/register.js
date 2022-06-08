@@ -1,11 +1,29 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 function Register() {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
+
+  const registerUser = (e) => {
+    try{
+    e.preventDefault();// stop the form from reloading the page
+    const data = {
+      name: name,
+      username: username,
+      email: email,
+      password: password,
+    };
+    axios.post("http://localhost:5000/users/api/register", data).then((res) => {
+      console.log(res);
+    });
+    }catch(err){
+      console.log(err);
+    }
+  };
+
 
   return (
     <>
@@ -14,7 +32,6 @@ function Register() {
         <p>{name}</p>
         <p>{username}</p>
         <p>{email}</p>
-        <p>{gender}</p>
         <p>{password}</p>
 
         <div className="from-group">
@@ -42,23 +59,6 @@ function Register() {
             placeholder="Enter your email"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <div className="form-group">
-            <label htmlFor="gender">Gender</label>
-            <input
-              type="radio"
-              name="gen"
-              value="Male"
-              onChange={(e) => setGender(e.target.value)}
-            />
-            Male
-            <input
-              type="radio"
-              name="gen"
-              value="Female"
-              onChange={(e) => setGender(e.target.value)}
-            />
-            Female
-          </div>
 
           <label htmlFor="password">Password</label>
           <input
@@ -68,9 +68,11 @@ function Register() {
             placeholder="Enter your password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit" className="btn btn-primary mt-3">
-            Submit
-          </button>
+          <input
+            type="submit"
+            className="btn btn-primary mt-3"
+            onClick={registerUser}
+          />
         </div>
       </div>
     </>
