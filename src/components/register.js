@@ -17,7 +17,12 @@ function Register() {
       password: password,
     };
     axios.post("http://localhost:5000/users/api/register", data).then((res) => {
-      console.log(res);
+      if(Response,data.success === true){
+        alert("User registered successfully");
+      }
+      else{
+        alert("User registration failed");
+      }
     });
     }catch(err){
       console.log(err);

@@ -14,7 +14,8 @@ class NavBar extends Component {
               <Link to="/about">About me</Link>
               <Link to="/pricing">Portofolio</Link>
               <Link to="/contact">Contacts</Link>
-<Link to ="/register">Register</Link>             
+              <Link to="/register">Register</Link>
+              <Link to="/login">Login</Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

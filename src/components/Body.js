@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Homepage from "../pages/Homepage";
 import About from "./About";
 import Contact from "./Contact";
+import Login from "./Login";
 import Menubar from './Menubar';
 import Pricing from "./Pricing";
 import Register from "./register";
@@ -18,6 +19,7 @@ function Body() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 }
