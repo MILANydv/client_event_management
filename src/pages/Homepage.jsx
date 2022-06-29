@@ -1,7 +1,8 @@
+import Pricing from "../components/home/Pricing";
+import Hero from "../components/home/Hero";
 import React from "react";
-import Hero from "../components/Hero";
-import Menubar from "../components/Menubar";
-import Pricing from "../components/Pricing";
+
+import Menubar from "../components/home/Menubar";
 
 function Homepage() {
   return (

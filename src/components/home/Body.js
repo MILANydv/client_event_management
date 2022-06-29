@@ -1,12 +1,15 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Homepage from "../pages/Homepage";
+import React from "react";
+
+
+import Homepage from "../../pages/Homepage";
+import Login from "../auth/Login";
+import Register from "../auth/Register";
 import About from "./About";
 import Contact from "./Contact";
-import Login from "./Login";
-import Menubar from './Menubar';
+import Menubar from "./Menubar";
 import Pricing from "./Pricing";
-import Register from "./register";
+import AddEvent from "../event/AddEvent";
 
 function Body() {
   return (
@@ -20,6 +23,7 @@ function Body() {
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/add-event" element={<AddEvent />} />
     </Routes>
   );
 }
