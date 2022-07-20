@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import Tooltip from "@mui/material/Tooltip";
 
 // Material Kit 2 React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from "../../../../../components/MKBox";
+import MKTypography from "../../../../../components/MKTypography";
 
 function ExampleCard({ image, name, count, pro, ...rest }) {
   const imageTemplate = (
@@ -82,7 +82,7 @@ function ExampleCard({ image, name, count, pro, ...rest }) {
           )}
           {count > 0 && (
             <MKTypography variant="button" fontWeight="regular" color="secondary">
-              {count} {count === 1 ? "Example" : "Examples"}
+              {count} {count === 1}
             </MKTypography>
           )}
         </MKBox>

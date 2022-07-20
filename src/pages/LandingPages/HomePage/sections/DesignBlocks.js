@@ -1,40 +1,67 @@
 // react-router-dom components
-import { Link } from "react-router-dom";
-
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 // @mui material components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 React components
-import MKBox from "components/MKBox";
-import MKBadge from "components/MKBadge";
-import MKTypography from "components/MKTypography";
+import MKBadge from "../../../../components/MKBadge";
+import MKBox from "../../../../components/MKBox";
+import MKTypography from "../../../../components/MKTypography";
 
 // Presentation page components
-import ExampleCard from "pages/LandingPages/HomePage/components/ExampleCard";
+import { CircularProgress, Link } from "@mui/material";
+import ExampleCard from "../components/ExampleCard";
 
 // Data
-import data from "pages/LandingPages/HomePage/sections/data/designBlocksData";
+// import data from "./data/designBlocksData";
 //  ----------------------- Edit For Event Section in  HomePage ------------------------
-function DesignBlocks() {
-  const renderData = data.map(({ title, description, items }) => (
-    <Grid container spacing={3} sx={{ mb: 10 }} key={title}>
+const DesignBlocks = () => {
+  const [events, setEvents] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const config = {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("userToken"),
+    },
+  };
+  useEffect(() => {
+    axios.get("http://localhost:5000/events/api/get-event", config).then((res) => {
+      let program = res.data.events;
+      setEvents(program);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/categories/api/categories").then((res) => {
+      let programCategory = res.data.categories;
+      setCategories(programCategory);
+      console.log(programCategory);
+    });
+  }, []);
+
+  let renderData = categories.map((category) => (
+    <Grid container spacing={3} sx={{ mb: 10 }} key={category.id}>
       <Grid item xs={12} lg={3}>
         <MKBox position="sticky" top="100px" pb={{ xs: 2, lg: 6 }}>
           <MKTypography variant="h3" fontWeight="bold" mb={1}>
-            {title}
+            {category.name}
           </MKTypography>
-          <MKTypography variant="body2" fontWeight="regular" color="secondary" mb={1} pr={2}>
-            {description}
-          </MKTypography>
+          {/* <Grid item xs={2} lg={2}>
+            <img src={category.image} alt="" srcset="" />
+          </Grid> */}
         </MKBox>
       </Grid>
       <Grid item xs={12} lg={9}>
         <Grid container spacing={3}>
-          {items.map(({ image, name, count, route, pro }) => (
-            <Grid item xs={12} md={4} sx={{ mb: 2 }} key={name}>
-              <Link to={pro ? "/" : route}>
-                <ExampleCard image={image} name={name} count={count} pro={pro} />
+          {events.map((event) => (
+            <Grid item xs={12} md={4} sx={{ mb: 2 }} key={event.id}>
+              <Link to={event.id}>
+                <ExampleCard
+                  image={event.eventImage}
+                  name={event.title}
+                  count={`Rs.${event.ticketPrice}`}
+                />
               </Link>
             </Grid>
           ))}
@@ -43,6 +70,13 @@ function DesignBlocks() {
     </Grid>
   ));
 
+  if (events.length === 0) {
+    return (
+      <Grid container justifyContent="center" alignItems="center">
+        <CircularProgress />
+      </Grid>
+    );
+  }
   return (
     <MKBox component="section" my={6} py={6}>
       <Container>
@@ -74,6 +108,6 @@ function DesignBlocks() {
       <Container sx={{ mt: 6 }}>{renderData}</Container>
     </MKBox>
   );
-}
+};
 
 export default DesignBlocks;

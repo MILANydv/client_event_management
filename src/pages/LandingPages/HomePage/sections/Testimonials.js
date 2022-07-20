@@ -4,18 +4,18 @@ import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from "../../../../components/MKBox";
+import MKTypography from "../../../../components/MKTypography";
 
 // Material Kit 2 React examples
-import DefaultReviewCard from "examples/Cards/ReviewCards/DefaultReviewCard";
+import DefaultReviewCard from "../../../../examples/Cards/ReviewCards/DefaultReviewCard";
 
 // Images
-import appleLogo from "assets/images/logos/gray-logos/logo-apple.svg";
-import digitalOceanLogo from "assets/images/logos/gray-logos/logo-digitalocean.svg";
-import facebookLogo from "assets/images/logos/gray-logos/logo-facebook.svg";
-import nasaLogo from "assets/images/logos/gray-logos/logo-nasa.svg";
-import vodafoneLogo from "assets/images/logos/gray-logos/logo-vodafone.svg";
+import appleLogo from "../../../../assets/images/logos/gray-logos/logo-apple.svg";
+import digitalOceanLogo from "../../../../assets/images/logos/gray-logos/logo-digitalocean.svg";
+import facebookLogo from "../../../../assets/images/logos/gray-logos/logo-facebook.svg";
+import nasaLogo from "../../../../assets/images/logos/gray-logos/logo-nasa.svg";
+import vodafoneLogo from "../../../../assets/images/logos/gray-logos/logo-vodafone.svg";
 
 function Information() {
   return (

@@ -4,18 +4,18 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 React components
-import MKBox from "components/MKBox";
-import MKSocialButton from "components/MKSocialButton";
-import MKTypography from "components/MKTypography";
+import MKBox from "../../../components/MKBox";
+import MKSocialButton from "../../../components/MKSocialButton";
+import MKTypography from "../../../components/MKTypography";
 
 
 // HomePage sections
-import Counters from "pages/LandingPages/HomePage/sections/Counters";
-import DesignBlocks from "pages/LandingPages/HomePage/sections/DesignBlocks";
-import Download from "pages/LandingPages/HomePage/sections/Download";
-import Information from "pages/LandingPages/HomePage/sections/Information";
-import Pages from "pages/LandingPages/HomePage/sections/Pages";
-import Testimonials from "pages/LandingPages/HomePage/sections/Testimonials";
+import Counters from "./sections/Counters";
+import DesignBlocks from "./sections/DesignBlocks";
+import Download from "./sections/Download";
+import Information from "./sections/Information";
+import Pages from "./sections/Pages";
+import Testimonials from "./sections/Testimonials";
 
 
 
@@ -86,7 +86,7 @@ function Presentation() {
         {/* Upcomming Event And Event Displayed On the Basis of Categoery */}
         <DesignBlocks />
 
-        <Pages />
+        {/* <Pages /> */}
 
         {/* todo:Use any other Way */}
         {/* <Container sx={{ mt: 6 }}>
