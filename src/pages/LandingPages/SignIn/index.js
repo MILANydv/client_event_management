@@ -17,18 +17,18 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 
 // Material Kit 2 React components
-import MKBox from "components/MKBox";
-import MKButton from "components/MKButton";
-import MKInput from "components/MKInput";
-import MKTypography from "components/MKTypography";
+import MKBox from "../../../components/MKBox";
+import MKButton from "../../../components/MKButton";
+import MKInput from "../../../components/MKInput";
+import MKTypography from "../../../components/MKTypography";
 
 // Material Kit 2 React example components
-import SimpleFooter from "examples/Footers/SimpleFooter";
+import SimpleFooter from "../../../examples/Footers/SimpleFooter";
 
 // Material Kit 2 React page layout routes
 
 // Images
-import bgImage from "assets/images/bg-sign-in-basic.jpeg";
+import bgImage from "../../../assets/images/bg-sign-in-basic.jpeg";
 
 function SignInBasic() {
   const [rememberMe, setRememberMe] = useState(false);
@@ -58,6 +58,11 @@ function SignInBasic() {
         password: password,
       };
       await axios.post("http://localhost:5000/users/api/authenticate", data).then((res) => {
+        if(res.data.token){
+                    let token = res.data.token;
+                    localStorage.setItem('userToken',token);
+                    window.location.replace("/dashboard");
+        }
         setUsername("");
         setPassword("");
         res.data.success === true ? alert("User logged in successfully") : alert("User login failed");

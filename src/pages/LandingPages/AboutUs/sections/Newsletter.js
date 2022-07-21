@@ -19,13 +19,13 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
+import MKBox from "../../../../components/MKBox";
+import MKButton from "../../../../components/MKButton";
+import MKInput from "../../../../components/MKInput";
+import MKTypography from "../../../../components/MKTypography";
 
 // Images
-import macbook from "assets/images/macbook.png";
+import macbook from "../../../../assets/images/macbook.png";
 
 function Newsletter() {
   return (

@@ -14,7 +14,6 @@ import Counters from "./sections/Counters";
 import DesignBlocks from "./sections/DesignBlocks";
 import Download from "./sections/Download";
 import Information from "./sections/Information";
-import Pages from "./sections/Pages";
 import Testimonials from "./sections/Testimonials";
 
 
@@ -26,7 +25,8 @@ import bgImage from "../../../assets/images/event_heading.jpg";
 function Presentation() {
   return (
     <>
-     
+    
+
       {/* ------------ Hero Section bg Image --------------- */}
       <MKBox
         minHeight="75vh"
@@ -151,7 +151,6 @@ function Presentation() {
           </Container>
         </MKBox>
       </Card>
-      
     </>
   );
 }
