@@ -1,35 +1,76 @@
+import DashboardLayout from "./layout/DashboardLayout";
 
-import AboutUs from "./pages/LandingPages/AboutUs";
-import ContactUs from "./pages/LandingPages/ContactUs";
-import SignIn from "./pages/LandingPages/SignIn";
-import SignUp from "./pages/LandingPages/Signup";
+// components
+import ErrorPage from "./pages/404";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Blog from "./pages/Blog";
+import Products from "./pages/Products";
+import User from "./pages/User";
 
-
-// Sections
-
-const routes = [
+const PageRoutes = [
+  // default
   {
-    name: "about us",
-    route: "/about-us",
-    component: <AboutUs />,
+    path: "/",
+    component: AuthLayout,
+    routes: [{ path: "/auth", component: Login }],
   },
+  // auth
   {
-    name: "contact us",
-    route: "/contact-us",
-    component: <ContactUs />,
+    path: "/auth",
+    component: AuthLayout,
+    routes: [
+      { path: "/auth/login", component: Login },
+      { path: "/auth/register", component: Register },
+    ],
   },
+  // dash
   {
-    name: "sign in",
-    route: "/sign-in",
-    color: "primary",
-    component: <SignIn />,
+    path: "/dashboard",
+    component: DashboardLayout,
+    routes: [
+      { path: "/dashboard/app", component: Dashboard },
+      { path: "/dashboard/user", component: User },
+      { path: "/dashboard/products", component: Products },
+      { path: "/dashboard/blog", component: Blog },
+    ],
   },
-  {
-    name: "sign up",
-    route: "/sign-up",
-    color: "primary",
-    component: <SignUp />,
-  },
+  // error
+  { path: "*", component: ErrorPage },
 ];
 
-export default routes;
+export default PageRoutes;
+
+/*
+
+Tried this code in the App.js but it didn't work.
+
+///
+import PageRoutes from "./routes";
+console.log(PageRoutes);
+
+const RouteWithSubRoutes = (route) => {
+  return (
+    <Route
+      path={route.path}
+      // pass the sub-routes to nest
+      render={(props) => <route.component {...props} routes={route.routes} />}
+    />
+  );
+};
+
+///
+
+const App = () => {
+  return (
+    <Switch>
+      {PageRoutes.map((route, idx) => (
+        <RouteWithSubRoutes key={idx} {...route} />
+      ))}
+    </Switch>
+  );
+};
+
+
+*/

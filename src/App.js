@@ -1,58 +1,55 @@
-import { useEffect } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+import "./App.css";
+import Profile from "./components/Profile/index";
+import UpdateProfile from "./components/Profile/UpdateProfile";
+import Settings from "./components/Settings/settings";
+import AddEvent from "./components/User/AddUser";
+import UpdateEvent from "./components/User/UpdateEvent";
 
-// react-router components
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+// components
+import DashboardLayout from "./layout/DashboardLayout";
+import ErrorPage from "./pages/404";
+import Blog from "./pages/Blog";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import Logout from "./pages/Logout";
+import Products from "./pages/Products";
+import Register from "./pages/Register";
+import User from "./pages/User";
 
-// @mui material components
-import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material/styles";
 
-// Material Kit 2 React themes
-import theme from "./assets/theme";
-import HomePage from "./pages/LandingPages/HomePage";
 
-// Material Kit 2 React routes
-import Footer from "./components/Footer/Footer";
-import NavBar from "./components/NavBar/NavBar";
-import Author from "./pages/Protected/Author";
-import Dashboard from "./pages/Protected/Dashboard";
-import routes from "./routes";
-
-export default function App() {
-  const { pathname } = useLocation();
-
-  // Setting page scroll to 0 when changing the route
-  useEffect(() => {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-  }, [pathname]);
-
-  const getRoutes = (allRoutes) =>
-    allRoutes.map((route) => {
-      if (route.collapse) {
-        return getRoutes(route.collapse);
-      }
-
-      if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
-      }
-
-      return null;
-    });
+const App = () => {
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <NavBar />
+    <>
+      {/* Dashboard Layout */}
 
-      <Routes>
-        {getRoutes(routes)}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/author" element={<Author />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-      <Footer />
-    </ThemeProvider>
+      <DashboardLayout>
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to="/login" />
+          </Route>
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/register" component={Register} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/user" component={User} />
+          <Route path="/product" component={Products} />
+          <Route path="/blog" component={Blog} />
+          <Route path="/addEvent" component={AddEvent} />
+          <Route path="/updateEvent/:eventId" component={UpdateEvent} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/updateProfile" component={UpdateProfile} />
+          <Route path="/settings" component={Settings} />
+
+          <Route path="/404" component={ErrorPage} />
+
+          <Route path="*" component={ErrorPage} />
+        </Switch>
+      </DashboardLayout>
+    </>
   );
-}
+};
+
+export default App;
