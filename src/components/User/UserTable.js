@@ -232,7 +232,7 @@ const UserTable = () => {
                         <Edit />
                       </IconButton>
                       <IconButton
-                        color="warning"
+                        color="secondary"
                         onClick={() => deleteEvent(user._id)}
                       >
                         <Delete />

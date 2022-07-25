@@ -150,7 +150,7 @@ function UpdateEvent() {
           />
         </Form.Group>
       </Row>
-      <Button type="submit">Create Event</Button>
+      <Button type="submit">Update Event</Button>
     </Form>
   );
 }

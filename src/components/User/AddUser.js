@@ -1,46 +1,47 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import { useParams } from "react-router-dom";
 
 function AddEvent() {
+  const { id } = useParams();
 
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [content, setContent] = useState("");
+  const [location, setLocation] = useState("");
+  const [specialAppereance, setSpecialAppereance] = useState("");
+  const [ticketPrice, setTicketPrice] = useState("");
+  const [eventDate, setEventDate] = useState("");
+  const [eventImage, setEventImage] = useState("");
 
-  const [title, setTitle] = useState();
-  const [category, setCategory] = useState([]);
-  const [content, setContent] = useState();
-  const [location, setLocation] = useState();
-  const [specialAppereance, setSpecialAppereance] = useState();
-  const [ticketPrice, setTicketPrice] = useState();
-  const [eventDate, setEventDate] = useState();
-  const [eventImage, setEventImage] = useState();
+  const config = {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  };
 
-  
- 
- 
 
   const AddEvents = (e) => {
     e.preventDefault();
-    const dataPost = new FormData();
-    dataPost.append("title", title);
-    dataPost.append("content", content);
-    dataPost.append("location", location);
-    dataPost.append("specialAppereance", specialAppereance);
-    dataPost.append("ticketPrice", ticketPrice);
-    dataPost.append("eventDate", eventDate);
-    dataPost.append("category", category);
-    dataPost.append("eventImage", eventImage);
-    console.log(dataPost);
 
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("token"),
-      },
-    };
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("category", category);
+    formData.append("content", content);
+    formData.append("location", location);
+    formData.append("specialAppereance", specialAppereance);
+    formData.append("ticketPrice", ticketPrice);
+    formData.append("eventDate", eventDate);
+    formData.append("eventImage", eventImage);
+
+
+
     axios
-      .post("http://localhost:5000/events/api/create-event", dataPost, config)
+      .post("http://localhost:5000/events/api/create-event", formData, config)
       .then((response) => {
         window.location.replace("/user");
         console.log(response.dataPost);
@@ -98,7 +99,6 @@ function AddEvent() {
         <Form.Group as={Col} controlId="formGridState">
           <Form.Label>State</Form.Label>
           <Form.Select
-            defaultValue="Choose..."
             onChange={(e) => setCategory(e.target.value)}
           >
             <option>Choose...</option>
@@ -121,7 +121,9 @@ function AddEvent() {
             type="file"
             accept="image/*"
             name="filename"
-            onChange = {(e)=>{setEventImage(e.target.files[0])}}
+            onChange={(e) => {
+              setEventImage(e.target.files[0]);
+            }}
           />
         </Form.Group>
       </Row>
