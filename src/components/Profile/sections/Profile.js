@@ -56,7 +56,7 @@ function ProfileSection() {
                         variant="outlined"
                         color="info"
                         component={RouterLink}
-                        to="/updateProfile"
+                        to={"/updateProfile/"+profile._id}
                       >
                         Update Profile
                       </Button>

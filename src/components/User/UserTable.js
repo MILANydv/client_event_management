@@ -226,8 +226,7 @@ const UserTable = () => {
                         color="primary"
                         component={RouterLink}
                         to={"/updateEvent/" + user._id}
-                        key={user._id}
-                        event={user}
+                      
                       >
                         <Edit />
                       </IconButton>

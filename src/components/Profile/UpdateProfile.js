@@ -1,35 +1,18 @@
-
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import { useParams } from "react-router-dom";
 
 function UpdateProfile() {
-  // useEffect(() => {
-  //   axios.get("http://localhost:5000/categories/api/categories").then((res) => {
-  //     let programCategory = res.data.categories;
-  //     setCategories(programCategory);
-  //   });
-  // }, []);
-  // // form submit
-  // categories.map((category) => {
-  //   console.log(category.name);
-  // });
+  const { id } = useParams();
 
-  const [title, setTitle] = useState();
-  const [category, setCategory] = useState([]);
-  const [content, setContent] = useState();
-  const [location, setLocation] = useState();
-  const [specialAppereance, setSpecialAppereance] = useState();
-  const [ticketPrice, setTicketPrice] = useState();
-  const [eventDate, setEventDate] = useState();
-
-  const fileChangeHandler = (e) => {
-    setEventImage(e.target.files[0]);
-  };
-  const [eventImage, setEventImage] = useState();
+  const [facebook,setFacebook] = useState("");
+  const [github,setGithub] = useState("");
+  const [linkedIn,setLinkedIn] = useState("");
+  const [profileImage, setProfileImage] = useState("");
 
   const config = {
     headers: {
@@ -37,95 +20,72 @@ function UpdateProfile() {
     },
   };
 
-  const AddEvents = async (e) => {
-    try {
-      e.preventDefault();
-      // stop the form from reloading the page
-      const data = {
-        title: title,
-        content: content,
-        location: location,
-        specialAppereance: specialAppereance,
-        ticketPrice: ticketPrice,
-        eventDate: eventDate,
-        category: category,
-        eventImage: eventImage,
-      };
-      console.log(data);
-      await axios
-        .post("http://localhost:5000/events/api/create-event", data, config)
-        .then((res) => {
-          if (res.data.success === true) {
-            window.location.replace("/user");
-          }
-        });
-    } catch (err) {
-      console.log(err);
-      alert(Response.data.message);
-    }
+  // fetching Events data from API
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/profiles/api/my-profile", config)
+      .then((res) => {
+        console.log(res.data.profiles);
+        let program = res.data.profiles;
+        setFacebook(program[0].facebook);
+        setGithub(program[0].github);
+        setLinkedIn(program[0].linkedin);
+        setProfileImage(program.profileImage);
+      });
+  }, []);
+
+  const UpdateProfiles = (e) => {
+    e.preventDefault();
+    // const formData = new FormData();
+    // formData.append("facebook", facebook);
+    // formData.append("github", github);
+    // formData.append("linkedin", linkedIn);
+    // formData.append("avatar", profileImage);
+    // console.log(formData);
+
+    const data = {
+      facebook: facebook,
+      github: github,
+      linkedin: linkedIn,
+      // avatar: profileImage,
+    };
+
+    axios
+      .put("http://localhost:5000/profiles/api/update-profile", data, config)
+      .then((response) => {
+        window.location.replace("/profile");
+        console.log(response.dataPost);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
-    <Form>
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridTitle">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            type="title"
-            placeholder="Enter Title"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </Form.Group>
+    <Form onSubmit={UpdateProfiles}>
+      <h1>Update Profile</h1>
+      
 
-        <Form.Group as={Col} controlId="formGridticketPrice">
-          <Form.Label>Ticket Price</Form.Label>
+      <Row className="mb-3">
+        <Form.Group as={Col} controlId="formGridGithub">
+          <Form.Label>GitHub Link</Form.Label>
           <Form.Control
-            type="ticketPrice"
-            placeholder="Enter Ticket Price"
-            onChange={(e) => setTicketPrice(e.target.value)}
+            value={github}
+            onChange={(e) => setGithub(e.target.value)}
           />
         </Form.Group>
-      </Row>
-      <Form.Group className="mb-3" controlId="formGridContent">
-        <Form.Label>Description</Form.Label>
-        <Form.Control
-          placeholder="Describe the Event"
-          onChange={(e) => setContent(e.target.value)}
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formGridLocation">
-        <Form.Label>Location</Form.Label>
-        <Form.Control
-          placeholder="Softwarica College(Block E), DilliBazar, Kathmandu"
-          onChange={(e) => setLocation(e.target.value)}
-        />
-      </Form.Group>
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridSpecialAppereance">
-          <Form.Label>Special Appereance</Form.Label>
-          <Form.Control
-            placeholder="Enter Special Guest"
-            onChange={(e) => setSpecialAppereance(e.target.value)}
-          />
-        </Form.Group>
-
-        <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>State</Form.Label>
-          <Form.Select
-            defaultValue="Choose..."
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option>Choose...</option>
-            <option>62b5f6d60cfddb3fccc5685f</option>
-          </Form.Select>
-        </Form.Group>
-      </Row>
-      <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridDate">
-          <Form.Label>Event Date</Form.Label>
+          <Form.Label>FaceBook</Form.Label>
           <Form.Control
-            type="date"
-            onChange={(e) => setEventDate(e.target.value)}
+            value={facebook}
+            onChange={(e) => setFacebook(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group as={Col} controlId="formGridDate">
+          <Form.Label>LinkedIn</Form.Label>
+          <Form.Control
+            value={linkedIn}
+            onChange={(e) => setLinkedIn(e.target.value)}
           />
         </Form.Group>
         <Form.Group as={Col} controlId="formGridImage">
@@ -135,13 +95,13 @@ function UpdateProfile() {
             type="file"
             accept="image/*"
             name="filename"
-            onChange={fileChangeHandler}
+            onChange={(e) => {
+              setProfileImage(e.target.files[0]);
+            }}
           />
         </Form.Group>
       </Row>
-      <Button type="submit" onClick={AddEvents}>
-        Update Profile
-      </Button>
+      <Button type="submit">Update Profile</Button>
     </Form>
   );
 }
