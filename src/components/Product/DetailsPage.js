@@ -22,6 +22,20 @@ const DetailsPage = () => {
         
        });
    }, []);
+
+
+    const BookEvent = (_id) => {
+      const fromData = new FormData();
+      fromData.append('_id', _id);
+      axios
+        .put("http://localhost:5000/events/api/attend-event", fromData, config)
+        .then((res) => {
+          alert("You have successfully booked the event");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
   return (
     <>
       <div className="container">
@@ -76,13 +90,26 @@ const DetailsPage = () => {
                         <strong>{events.specialAppreance}</strong>
                       </h6>
                     </p>
-
-                    <Button className='ms-auto'>
-                      <a href={events.eventLink}>Buy Tickets</a>
-                    </Button>
-                    <Button>
-                      <a href={events.eventLink}>Buy Tickets</a>
-                    </Button>
+                    <div className="d-flex">
+                      <Button className="ms-auto m-2" 
+                      onClick={() => BookEvent(events._id)}
+                      >
+                     Buy Tickets
+                      </Button>
+                      <Button className="m-2"
+                      onClick={() => {
+                        window.location.replace = "/product";
+                      }
+                      }>
+                      
+                      Cancle
+                      </Button>
+                    </div>
+                  </div>
+                  <div className='m-3'>
+                    <div className="col-md-11">
+                    <h2>Reviews:</h2>
+                    </div>
                   </div>
                 </div>
               </div>
