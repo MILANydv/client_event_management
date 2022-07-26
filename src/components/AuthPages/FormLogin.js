@@ -13,6 +13,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm, useFormState } from "react-hook-form";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
+import { Link as RouterLink } from "react-router-dom";
+
 
 
 // style
@@ -146,7 +148,7 @@ e.preventDefault();
         label="Username"
         error={errors.username ? true : false}
         helperText={errors.username && "Enter a valid username"}
-        onChange = {(e) => setUsername(e.target.value)}
+        onChange={(e) => setUsername(e.target.value)}
       />
 
       {/* Password */}
@@ -168,7 +170,7 @@ e.preventDefault();
         helperText={
           errors.password && "Enter a valid password (5-15 characters)"
         }
-        onChange = {(e) => setPassword(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)}
       />
 
       <Box
@@ -180,22 +182,21 @@ e.preventDefault();
       >
         {/* Checkbox */}
         <FormControlLabel
-          control={
-            <Checkbox
-              className="ckbox"
-            />
-          }
+          control={<Checkbox className="ckbox" />}
           label="Remember me"
         />
 
-        <Link href="#"  underline="always">
+        <Link to="/reset-password" component={RouterLink}  underline="always">
           Forgot password?
         </Link>
+        
       </Box>
 
-      <Button type="submit" variant="contained" disableElevation
-      onClick={LoginUser}
-      
+      <Button
+        type="submit"
+        variant="contained"
+        disableElevation
+        onClick={LoginUser}
       >
         Login
       </Button>

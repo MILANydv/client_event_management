@@ -98,7 +98,7 @@ const DetailsPage = () => {
                       </Button>
                       <Button className="m-2"
                       onClick={() => {
-                        window.location.replace = "/product";
+                        window.location.replace("/product");
                       }
                       }>
                       

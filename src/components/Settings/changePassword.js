@@ -66,25 +66,14 @@ function ChangePassword() {
 
   return (
     <Form>
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridTitle">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            type="title"
-            placeholder="Enter Title"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </Form.Group>
+      <Form.Group className="mb-3" controlId="formGridContent">
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          placeholder=""
+          onChange={(e) => setContent(e.target.value)}
+        />
+      </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridticketPrice">
-          <Form.Label>Ticket Price</Form.Label>
-          <Form.Control
-            type="ticketPrice"
-            placeholder="Enter Ticket Price"
-            onChange={(e) => setTicketPrice(e.target.value)}
-          />
-        </Form.Group>
-      </Row>
       <Form.Group className="mb-3" controlId="formGridContent">
         <Form.Label>Description</Form.Label>
         <Form.Control
@@ -99,45 +88,7 @@ function ChangePassword() {
           onChange={(e) => setLocation(e.target.value)}
         />
       </Form.Group>
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridSpecialAppereance">
-          <Form.Label>Special Appereance</Form.Label>
-          <Form.Control
-            placeholder="Enter Special Guest"
-            onChange={(e) => setSpecialAppereance(e.target.value)}
-          />
-        </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>State</Form.Label>
-          <Form.Select
-            defaultValue="Choose..."
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option>Choose...</option>
-            <option>62b5f6d60cfddb3fccc5685f</option>
-          </Form.Select>
-        </Form.Group>
-      </Row>
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridDate">
-          <Form.Label>Event Date</Form.Label>
-          <Form.Control
-            type="date"
-            onChange={(e) => setEventDate(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group as={Col} controlId="formGridImage">
-          <Form.Label>Event Image</Form.Label>
-
-          <Form.Control
-            type="file"
-            accept="image/*"
-            name="filename"
-            onChange={fileChangeHandler}
-          />
-        </Form.Group>
-      </Row>
       <Button type="submit" onClick={AddEvents}>
         Update Profile
       </Button>

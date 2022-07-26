@@ -48,7 +48,7 @@ export default function Settings() {
   };
 
   return (
-    <Box
+    <Box className="container"
       sx={{
         flexGrow: 1,
         bgcolor: "background.paper",

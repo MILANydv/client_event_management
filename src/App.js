@@ -1,7 +1,9 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
+import DetailsPage from "./components/Product/DetailsPage";
 import Profile from "./components/Profile/index";
 import UpdateProfile from "./components/Profile/UpdateProfile";
+import ResetPassword from "./components/Settings/resetPassword";
 import Settings from "./components/Settings/settings";
 import AddEvent from "./components/User/AddUser";
 import UpdateEvent from "./components/User/UpdateEvent";
@@ -38,10 +40,12 @@ const App = () => {
           <Route path="/product" component={Products} />
           <Route path="/blog" component={Blog} />
           <Route path="/addEvent" component={AddEvent} />
-          <Route path="/updateEvent/:eventId" component={UpdateEvent} />
+          <Route path="/updateEvent/:id" component={UpdateEvent} />
+          <Route path="/detailsPage/:id" component={DetailsPage} />
           <Route path="/profile" component={Profile} />
           <Route path="/updateProfile" component={UpdateProfile} />
           <Route path="/settings" component={Settings} />
+          <Route path="/reset-password" component={ResetPassword} />
 
           <Route path="/404" component={ErrorPage} />
 
