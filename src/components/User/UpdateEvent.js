@@ -69,7 +69,7 @@ function UpdateEvent() {
 
   return (
     <Form onSubmit={UpdateEvents}>
-      <h1>Add Product</h1>
+      <h1>Update Events</h1>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridTitle">
           <Form.Label>Title</Form.Label>

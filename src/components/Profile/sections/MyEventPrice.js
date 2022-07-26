@@ -12,7 +12,7 @@ const TextStyle = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const ProductPrice = ({ price, priceSale }) => {
+const MyEventPrice = ({ price, priceSale }) => {
   return (
     <TextStyle variant="subtitle2">
       {priceSale && (
@@ -24,4 +24,4 @@ const ProductPrice = ({ price, priceSale }) => {
   );
 };
 
-export default ProductPrice;
+export default MyEventPrice;

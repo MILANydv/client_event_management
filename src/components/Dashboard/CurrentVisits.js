@@ -25,7 +25,7 @@ const CurrentVisits = () => {
   const theme = useTheme();
 
   const chartOptions = {
-    labels: ["America", "Asia", "Europe", "Africa"],
+    labels: ["Baneshwor", "Koteshwor", "Bagbazar", "Durbar Marg"],
     stroke: { colors: [theme.palette.background.paper] },
     colors: [
       theme.palette.success.main,
@@ -50,7 +50,7 @@ const CurrentVisits = () => {
 
   return (
     <DashCard>
-      <DashCardHeader title="Current Visits" />
+      <DashCardHeader title="Most Event's Location" />
 
       <DivStyle>
         <ReactApexChart

@@ -18,7 +18,7 @@ const Blog = () => {
     <>
       {/* Helmet */}
       <Helmet>
-        <title>Blogs | MUI Dash</title>
+        <title>Blogs | Evento</title>
       </Helmet>
 
       <ContainerStyle maxWidth="lg">

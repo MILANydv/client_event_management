@@ -67,30 +67,30 @@ function ChangePassword() {
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formGridContent">
-        <Form.Label>Description</Form.Label>
+        <Form.Label>Old Password</Form.Label>
         <Form.Control
-          placeholder=""
+          type="password"
           onChange={(e) => setContent(e.target.value)}
         />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formGridContent">
-        <Form.Label>Description</Form.Label>
+        <Form.Label>New Password</Form.Label>
         <Form.Control
-          placeholder="Describe the Event"
+          type="password"
           onChange={(e) => setContent(e.target.value)}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formGridLocation">
-        <Form.Label>Location</Form.Label>
+        <Form.Label>Conform Password</Form.Label>
         <Form.Control
-          placeholder="Softwarica College(Block E), DilliBazar, Kathmandu"
+          type="password"
           onChange={(e) => setLocation(e.target.value)}
         />
       </Form.Group>
 
       <Button type="submit" onClick={AddEvents}>
-        Update Profile
+        Change Passowrd
       </Button>
     </Form>
   );

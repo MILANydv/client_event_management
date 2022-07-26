@@ -25,7 +25,7 @@ const Products = () => {
     <>
       {/* Helmet */}
       <Helmet>
-        <title>Products | MUI Dash</title>
+        <title>Events | Evento</title>
       </Helmet>
 
       {/* Fixed counter for cart */}
@@ -35,7 +35,7 @@ const Products = () => {
       <ContainerStyle maxWidth="lg">
         {/* Header */}
         <Typography variant="h3" className="productHeader">
-          Products
+          Events
         </Typography>
 
         {/* Action bar */}

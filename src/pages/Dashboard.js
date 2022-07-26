@@ -45,35 +45,6 @@ const Dashboard = () => {
 
         <ProductList />
 
-        {/* Conversion Rates */}
-        {/* <Grid item xs={12} md={6} lg={8}>
-          <ConversionRate />
-        </Grid> */}
-
-        {/* Current Subject */}
-        {/* <Grid item xs={12} md={6} lg={4}>
-          <ChartCurrentSubject />
-        </Grid> */}
-
-        {/* News Update */}
-        {/* <Grid item xs={12} md={6} lg={8}>
-          <NewsUpdate />
-        </Grid> */}
-
-        {/* Order Timeline */}
-        {/* <Grid item xs={12} md={6} lg={4}>
-          <OrderTimeline />
-        </Grid> */}
-
-        {/* Traffic by Site */}
-        {/* <Grid item xs={12} md={6} lg={4}>
-          <SocialTraffic />
-        </Grid> */}
-
-        {/* Traffic by Site */}
-        {/* <Grid item xs={12} md={6} lg={8}>
-          <EventsCard />
-        </Grid> */}
       </GridContainerStyle>
     </>
   );

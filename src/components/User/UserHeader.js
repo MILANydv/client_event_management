@@ -33,7 +33,7 @@ const BoxStyle = styled(Box)(({ theme }) => ({
 const UserHeader = () => {
   return (
     <BoxStyle>
-      <Typography variant="h3">User</Typography>
+      <Typography variant="h3">My Events</Typography>
 
       <Button
         variant="contained"

@@ -6,6 +6,7 @@ import { styled } from "@material-ui/styles";
 import bgImage from "../../images/newsList/cover_5.jpg";
 import Footer from "./sections/Footer";
 import ProfileSection from "./sections/Profile";
+import FullWidthTabs from "./sections/Tabs";
 
 
 function Profile() 
@@ -36,17 +37,12 @@ function Profile()
             placeItems: "center",
           }}
         />
-        <CardStyle
-       
-        >
+        <CardStyle>
           <ProfileSection />
         </CardStyle>
       </Box>
-      <Box> 
-      
-        {/* <CardStyle>
-          <Contact />
-        </CardStyle> */}
+      <Box>
+        <FullWidthTabs />
 
         <Footer />
       </Box>
