@@ -137,18 +137,7 @@ function UpdateEvent() {
             onChange={(e) => setEventDate(e.target.value)}
           />
         </Form.Group>
-        <Form.Group as={Col} controlId="formGridImage">
-          <Form.Label>Event Image</Form.Label>
-
-          <Form.Control
-            type="file"
-            accept="image/*"
-            name="filename"
-            onChange={(e) => {
-              setEventImage(e.target.files[0]);
-            }}
-          />
-        </Form.Group>
+       
       </Row>
       <Button type="submit">Update Event</Button>
     </Form>

@@ -6,24 +6,10 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
 function ChangePassword() {
-  // useEffect(() => {
-  //   axios.get("http://localhost:5000/categories/api/categories").then((res) => {
-  //     let programCategory = res.data.categories;
-  //     setCategories(programCategory);
-  //   });
-  // }, []);
-  // // form submit
-  // categories.map((category) => {
-  //   console.log(category.name);
-  // });
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [title, setTitle] = useState();
-  const [category, setCategory] = useState([]);
-  const [content, setContent] = useState();
-  const [location, setLocation] = useState();
-  const [specialAppereance, setSpecialAppereance] = useState();
-  const [ticketPrice, setTicketPrice] = useState();
-  const [eventDate, setEventDate] = useState();
 
   const fileChangeHandler = (e) => {
     setEventImage(e.target.files[0]);
@@ -36,31 +22,26 @@ function ChangePassword() {
     },
   };
 
-  const AddEvents = async (e) => {
+  const ChangePassword = async (e) => {
     try {
       e.preventDefault();
       // stop the form from reloading the page
       const data = {
-        title: title,
-        content: content,
-        location: location,
-        specialAppereance: specialAppereance,
-        ticketPrice: ticketPrice,
-        eventDate: eventDate,
-        category: category,
-        eventImage: eventImage,
+     oldPassword: oldPassword,
+      newPassword: newPassword,
+      confirmPassword:  confirmPassword,
       };
       console.log(data);
       await axios
-        .post("http://localhost:5000/events/api/create-event", data, config)
+        .post("http://localhost:5000/users/api/change-password", data, config)
         .then((res) => {
           if (res.data.success === true) {
-            window.location.replace("/user");
+            window.location.replace("/logout");
           }
         });
     } catch (err) {
-      console.log(err);
-      alert(Response.data.message);
+      window.location.replace("/logout");
+     
     }
   };
 
@@ -70,7 +51,8 @@ function ChangePassword() {
         <Form.Label>Old Password</Form.Label>
         <Form.Control
           type="password"
-          onChange={(e) => setContent(e.target.value)}
+          placeholder="Enter old password"
+          onChange={(e) => setOldPassword(e.target.value)}
         />
       </Form.Group>
 
@@ -78,18 +60,20 @@ function ChangePassword() {
         <Form.Label>New Password</Form.Label>
         <Form.Control
           type="password"
-          onChange={(e) => setContent(e.target.value)}
+          placeholder="Enter new password"
+          onChange={(e) => setNewPassword(e.target.value)}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formGridLocation">
         <Form.Label>Conform Password</Form.Label>
         <Form.Control
           type="password"
-          onChange={(e) => setLocation(e.target.value)}
+          placeholder="Enter confirm password"
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </Form.Group>
 
-      <Button type="submit" onClick={AddEvents}>
+      <Button type="submit" onClick={ChangePassword}>
         Change Passowrd
       </Button>
     </Form>

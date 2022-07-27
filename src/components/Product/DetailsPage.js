@@ -1,10 +1,13 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { IconButton } from "@material-ui/core";
+import { ThumbUpAltOutlined } from "@mui/icons-material";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import Reviews from "./Reviews";
 
 const DetailsPage = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const [events, setEvents] = useState([]);
 
   const config = {
@@ -13,29 +16,28 @@ const DetailsPage = () => {
     },
   };
 
-   useEffect(() => {
-     axios
-       .get("http://localhost:5000/events/api/get-single-event/" + id, config)
-       .then((res) => {
-         let program = res.data.event;
-         setEvents(program);
-        
-       });
-   }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/events/api/get-single-event/" + id, config)
+      .then((res) => {
+        let program = res.data.event;
+        setEvents(program);
+      });
+  }, []);
 
+  const BookEvent = (_id) => {
+    const fromData = new FormData();
+    fromData.append("_id", _id);
+    axios
+      .put("http://localhost:5000/events/api/attend-event", fromData, config)
+      .then((res) => {
+        alert("You have successfully booked the event");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    const BookEvent = (_id) => {
-      const fromData = new FormData();
-      fromData.append('_id', _id);
-      axios
-        .put("http://localhost:5000/events/api/attend-event", fromData, config)
-        .then((res) => {
-          alert("You have successfully booked the event");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+  };
   return (
     <>
       <div className="container">
@@ -91,26 +93,33 @@ const DetailsPage = () => {
                       </h6>
                     </p>
                     <div className="d-flex">
-                      <Button className="ms-auto m-2" 
-                      onClick={() => BookEvent(events._id)}
+                      <IconButton>
+                        <ThumbUpAltOutlined  />
+                        <center>
+                          <h3 id="counter-label">0</h3>
+                        </center>
+                      </IconButton>
+                      <Button
+                        className="ms-auto m-2"
+                        onClick={() => BookEvent(events._id)}
                       >
-                     Buy Tickets
+                        Buy Tickets
                       </Button>
-                      <Button className="m-2"
-                      onClick={() => {
-                        window.location.replace("/product");
-                      }
-                      }>
-                      
-                      Cancle
+                      <Button
+                        className="m-2"
+                        onClick={() => {
+                          window.location.replace("/product");
+                        }}
+                      >
+                        Cancle
                       </Button>
                     </div>
                   </div>
-                  <div className='m-3'>
-                    <div className="col-md-11">
-                    <h2>Reviews:</h2>
-                    </div>
-                  </div>
+
+                  <Reviews 
+                  key={events._id}
+                  props={events}
+                   />
                 </div>
               </div>
             </div>
@@ -119,6 +128,6 @@ const DetailsPage = () => {
       </div>
     </>
   );
-}
+};
 
-export default DetailsPage
+export default DetailsPage;
